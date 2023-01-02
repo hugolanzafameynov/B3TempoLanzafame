@@ -1,4 +1,4 @@
-package com.example.b3tempolanzafame;
+package com.example.b3tempoLanzafame;
 
 import org.junit.Test;
 

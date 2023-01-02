@@ -1,4 +1,4 @@
-package com.example.b3tempolanzafame;
+package com.example.b3tempoLanzafame;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.b3tempolanzafame", appContext.getPackageName());
+        assertEquals("com.example.b3tempoLanzafame", appContext.getPackageName());
     }
 }
