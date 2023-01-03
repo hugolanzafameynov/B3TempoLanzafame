@@ -6,6 +6,9 @@
     <string name="not_available">ND</string>
     <string name="not_set">not set</string>
     <string name="history_bt">Historique</string>
-
+    <string name="channel_name">AlerteTempo</string>
+    <string name="channel_description">AlerteTempo pour les jours rouges et blancs</string>
+    <string name="notif_nextdaycolor_title">AlerteTempo</string>
+    <string name="notif_nextdaycolor_description">Couleur du prochain jour : </string>
 
 </resources>

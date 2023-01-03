@@ -2,8 +2,13 @@ package com.example.b3tempoLanzafame;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +25,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String CHANNEL_ID = "tempo_alert_channel_id";
     public static IEdfApi edfApi;
     ActivityMainBinding binding;
 
@@ -31,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // init views
         binding.historyBt.setOnClickListener(this);
+
+        createNotificationChannel();
+
 
         // Init Retrofit client
         Retrofit retrofitClient = ApiClient.get();
@@ -83,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     Log.w(LOG_TAG, "call to getTempoDaysColor() failed with error code " + response.code());
                 }
+                checkColor4Notif(tempoDaysColor.getCouleurJourJ1());
             }
 
             @Override
@@ -97,6 +107,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.setClass(this,HistoryActivity.class);
         startActivity(intent);
     } */
+
+    private void createNotificationChannel(){
+        if (Build.VERSION.SDK_INT >= 32) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public void checkColor4Notif(TempoColor nextDayColor){
+        //if (nextDayColor == TempoColor.RED || nextDayColor == TempoColor.WHITE) {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(getString(R.string.notif_nextdaycolor_title))
+                    .setContentText(getString(R.string.notif_nextdaycolor_description) + nextDayColor)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.notify(Tools.getNextNotifId(), builder.build());
+        //}
+    }
 
     @Override
     public void onClick(View v) {
