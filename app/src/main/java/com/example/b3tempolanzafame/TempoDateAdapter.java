@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.b3tempoLanzafame.databinding.TempoDateItemBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +31,14 @@ public class TempoDateAdapter extends RecyclerView.Adapter<TempoDateAdapter.Temp
     public TempoDateViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.tempo_date_item, parent, false);
-
-        return new TempoDateViewHolder(view);
+        TempoDateItemBinding binding = TempoDateItemBinding.bind(view);
+        return new TempoDateViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TempoDateViewHolder holder, int position) {
-        holder.dateTv.setText(tempoDates.get(position).getDate());
-        holder.colorFl.setBackgroundColor(ContextCompat.getColor(context, tempoDates.get(position).getCouleur().getResId()));
+        holder.binding.dateTv.setText(tempoDates.get(position).getDate());
+        holder.binding.colorFl.setBackgroundColor(ContextCompat.getColor(context, tempoDates.get(position).getCouleur().getResId()));
     }
 
     @Override
@@ -45,13 +47,11 @@ public class TempoDateAdapter extends RecyclerView.Adapter<TempoDateAdapter.Temp
     }
 
     public class TempoDateViewHolder extends RecyclerView.ViewHolder {
-        TextView dateTv;
-        FrameLayout colorFl;
+        TempoDateItemBinding binding;
 
-        public TempoDateViewHolder(@NonNull View itemView) {
-            super(itemView);
-            dateTv = itemView.findViewById(R.id.date_tv);
-            colorFl = itemView.findViewById(R.id.color_fl);
+        public TempoDateViewHolder(@NonNull TempoDateItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }
