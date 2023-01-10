@@ -5,10 +5,15 @@
     <string name="dcv_today_tx">Aujourd\'hui</string>
     <string name="not_available">ND</string>
     <string name="not_set">not set</string>
-    <string name="history_bt">Historique</string>
+    <string name="history_bt">Histo V1</string>
+    <string name="history_bt_2">Histo V2</string>
     <string name="channel_name">AlerteTempo</string>
     <string name="channel_description">AlerteTempo pour les jours rouges et blancs</string>
     <string name="notif_nextdaycolor_title">AlerteTempo</string>
     <string name="notif_nextdaycolor_description">Couleur du prochain jour : </string>
+    <string name="color_blue">Bleu</string>
+    <string name="color_red">Rouge</string>
+    <string name="color_white">Blanc</string>
+    <string name="color_unknown">Unknown</string>
 
 </resources>

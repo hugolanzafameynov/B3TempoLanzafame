@@ -14,12 +14,12 @@ import com.example.b3tempoLanzafame.databinding.TempoDateItemBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TempoDateAdapter extends RecyclerView.Adapter<TempoDateAdapter.TempoDateViewHolder> {
+public class TempoDateAdapter2 extends RecyclerView.Adapter<TempoDateAdapter2.TempoDateViewHolder> {
 
     private List<TempoDate> tempoDates = new ArrayList<>();
     private Context context;
 
-    public TempoDateAdapter( List<TempoDate> tempoDates, Context context) {
+    public TempoDateAdapter2( List<TempoDate> tempoDates, Context context) {
         this.tempoDates = tempoDates;
         this.context = context;
     }
@@ -28,7 +28,7 @@ public class TempoDateAdapter extends RecyclerView.Adapter<TempoDateAdapter.Temp
     @Override
     public TempoDateViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.tempo_date_item, parent, false);
+                .inflate(R.layout.tempo_date_item2, parent, false);
         TempoDateItemBinding binding = TempoDateItemBinding.bind(view);
         return new TempoDateViewHolder(binding);
     }
@@ -37,6 +37,7 @@ public class TempoDateAdapter extends RecyclerView.Adapter<TempoDateAdapter.Temp
     public void onBindViewHolder(@NonNull TempoDateViewHolder holder, int position) {
         holder.binding.dateTv.setText(tempoDates.get(position).getDate());
         holder.binding.colorFl.setBackgroundColor(ContextCompat.getColor(context, tempoDates.get(position).getCouleur().getColorResId()));
+        //holder.binding.colorText.setText(context.getString(tempoDates.get(position).getCouleur().getStringResId()));
     }
 
     @Override
